@@ -1,26 +1,115 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React, {Component} from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import Home,{newContact,FancyButton} from './home'
+import Home1  from './home1'
+import Home2  from './home2'
+import Home3  from './home3'
+import Home4  from './home4'
+import Home5  from './home5'
+
+
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <div className="index">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+            <li>
+              <Link to="/home1">home1</Link>
+            </li>
+            <li>
+              <Link to="/home3">home3</Link>
+            </li>
+            <li>
+              <Link to="/home4">home4</Link>
+            </li>
+            <li>
+              <Link to="/home5">home5</Link>
+            </li>
+          </ul>
+        </nav>
+        </div>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+
+        <div className="content">
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/home1">
+            <Home1 />
+          </Route>
+          <Route path="/home2">
+            <Home2 />
+          </Route>
+          <Route path="/home3">
+            <Home3 />
+          </Route>
+          <Route path="/home4">
+            <Home4 />
+          </Route>
+          <Route path="/home5">
+            <Home5 />
+          </Route>
+        </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+// function Home() {
+//   return <h2>Home</h2>;
+// }
+
+function isAnExecutortrue() {
+  console.log("true", newContact().isAnExecutor = true)
+}
+
+function isAnExecutorflase() {
+  console.log("false", newContact().isAnExecutor = false)
+}
+
+const refs = React.createRef();
+
+function About() {
+  return (
+  <>
+  <h2>About</h2>
+  <button onClick={isAnExecutortrue}>true</button>
+  <button onClick={isAnExecutorflase}>false</button>
+  {/* <FancyButton ref={refs}>Click me!</FancyButton>; */}
+  </>
+  
+  )
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}
