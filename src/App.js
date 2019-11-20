@@ -19,7 +19,9 @@ import Home5  from './home5'
 export default function App() {
   return (
     <Router>
-      <div>
+      
+      <div className="container">
+      <div className="box">
         <div className="index">
         <nav>
           <ul>
@@ -36,7 +38,7 @@ export default function App() {
               <Link to="/home1">home1</Link>
             </li>
             <li>
-              <Link to="/home3">home3</Link>
+              <Link to="/home3">home3 <small>(Context)</small> </Link>
             </li>
             <li>
               <Link to="/home4">home4</Link>
@@ -47,10 +49,10 @@ export default function App() {
           </ul>
         </nav>
         </div>
-
+        </div>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-
+        
         <div className="content">
         <Switch>
           <Route path="/about">
@@ -79,6 +81,7 @@ export default function App() {
           </Route>
         </Switch>
         </div>
+     
       </div>
     </Router>
   );

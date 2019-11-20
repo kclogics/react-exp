@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.container {
+  /* background-color: lightgray; */
+  display: flex;
+  border: 2px solid lightgrey;
+  height: 100%;
+}
+.index {
+  position: relative;
+  /* background-color: lightblue; */
+  height: 100%;  
+}
+
+.box {
+  /* background-color: rgba(0, 0, 0, 0.404); */
+  padding:  0 15% 10% 0%;
+  height: 100%;
+}
+
+.content{
+  /* background-color: lightgray; */
+  height: 100%;
+}
+
+small {
+  color: lightslategray;
+}
+
+a {
+  color: grey;
+}

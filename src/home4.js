@@ -32,7 +32,6 @@ export default function Home4() {
     <>
     <h2>Home4</h2>
     <BookPage />
-    <Book />
  
     </>
     )
