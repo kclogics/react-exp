@@ -14,7 +14,7 @@ code {
 .container {
   /* background-color: lightgray; */
   display: flex;
-  border: 2px solid lightgrey;
+  /* border: 2px solid lightgrey; */
   height: 100%;
 }
 .index {

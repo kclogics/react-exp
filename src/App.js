@@ -13,6 +13,8 @@ import Home2  from './home2'
 import Home3  from './home3'
 import Home4  from './home4'
 import Home5  from './home5'
+import Home6  from './home6'
+import Home7  from './home7'
 
 
 
@@ -46,6 +48,12 @@ export default function App() {
             <li>
               <Link to="/home5">home5</Link>
             </li>
+            <li>
+              <Link to="/home6">home6<small>(style)</small> </Link>
+            </li>
+            <li>
+              <Link to="/home7">home7<small>(aus:264d004d)</small></Link>
+            </li>
           </ul>
         </nav>
         </div>
@@ -78,6 +86,12 @@ export default function App() {
           </Route>
           <Route path="/home5">
             <Home5 />
+          </Route>
+          <Route path="/home6">
+            <Home6 />
+          </Route>
+          <Route path="/home7">
+            <Home7 />
           </Route>
         </Switch>
         </div>

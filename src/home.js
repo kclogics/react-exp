@@ -11,22 +11,22 @@ export const newContact = () => ({
     </button>
   ));
 
- console.log(newContact().isAnExecutor)
+//  console.log(newContact().isAnExecutor)
 
- function saveClicked() {
-    // console.log("true", newContact().isAnExecutor = true)
-    var a = newContact().isAnExecutor;
-    a = true;
-    console.log(a)
-    return a;
- }
+//  function saveClicked() {
+//     // console.log("true", newContact().isAnExecutor = true)
+//     var a = newContact().isAnExecutor;
+//     a = true;
+//     console.log(a)
+//     return a;
+//  }
 
 export default function Home() {
     return (
     <>
     <h2>Home</h2>
     <div>{newContact().isAnExecutor.toString()}</div>
-    <button onClick={saveClicked}>save</button>
+    <button>save</button>
     <Hello29 />
     </>
     )

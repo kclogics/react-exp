@@ -2,6 +2,76 @@
 import React, { useReducer, useContext } from 'react'
 import ReactDOM from 'react-dom'
 
+
+// ***********context example starts ***************************************************************
+
+const initialContext = { foo: 'bar' }
+const AppContext = React.createContext(initialContext);
+
+function contextConsumerWrapper(WrappedComponent, Context) {
+  return class extends React.Component {
+    render() {
+      return (
+        <Context.Consumer>
+          { context => <WrappedComponent context={context}/> }
+        </Context.Consumer>
+      )
+    }
+  }
+}
+
+function contextProviderWrapper(WrappedComponent, Context, initialContext) {
+  return class extends React.Component {
+    constructor(props) {
+      super(props)
+      
+      this.state = { ...initialContext }
+    }
+    
+    // define any state changers
+    changeContextBaz = () => {
+      this.setState({ foo: 'baz' })
+    }
+    changeContextBar = () => {
+      this.setState({ foo: 'bar'})
+    }
+
+    render() {
+      return (
+       <Context.Provider value={{
+        ...this.state,
+        changeContextBaz: this.changeContextBaz,
+        changeContextBar: this.changeContextBar
+       }} >
+          <WrappedComponent />
+       </Context.Provider>
+      )
+    }
+  }
+}
+ 
+
+class Child extends React.Component {
+  render() {
+    return (
+      <div>
+        <button onClick={this.props.context.changeContextBaz}>Click for baz</button>
+        <button onClick={this.props.context.changeContextBar}>Click for bar</button>
+        {this.props.context.foo}
+      </div>
+     )
+  }
+}
+
+const ChildWithContext = contextConsumerWrapper(Child, AppContext)
+const ChildWithProvide = contextProviderWrapper(ChildWithContext, AppContext, initialContext)
+
+
+// context example ends
+
+
+// ********************************************************************************************
+
 const MyContext = React.createContext(null)
 
 const initialState = {
@@ -14,7 +84,7 @@ const UPDATE_USER = 'UPDATE_USER'
 const SET_GENDER = 'SET_GENDER'
 const SET_AGE = 'SET_AGE'
 
-function reducer(state, action) {
+function reducer(state, action) { 
   switch (action.type) {
     case UPDATE_USER:
       return {
@@ -124,14 +194,46 @@ function AddAgeToUser() {
   )
 }
 
+// ********** Toggle Context starts with class **************************
+
+const ThemeContext = React.createContext('light');
+
+class ThemeProvider extends React.Component {
+  state = {
+    theme: 'light',
+  };
+
+  toggleTheme = () => {
+    this.setState(({theme}) => ({
+      theme: theme === 'light' ? 'dark' : 'light',
+    }))
+  }
+  
+  render() {
+    return (
+      <ThemeContext.Provider value={this.state.theme}>
+        <button onClick={this.toggleTheme}>toggle theme</button>
+        {this.props.children}
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+// ********** Toggle Context Ends **************************
 
 export default function Home3() {
     return (
     <>
     <h2>Home3</h2>
     <App /> 
+    <h1>Context Example</h1>
+    <ChildWithProvide />
+    <h1>Context Toggle</h1>
+    <ThemeProvider>
+        <ThemeContext.Consumer>
+          {theme => <div className={`theme theme--${theme}`}>{theme}</div>}
+        </ThemeContext.Consumer>
+      </ThemeProvider>
     </>
     )
   }
-
- 
